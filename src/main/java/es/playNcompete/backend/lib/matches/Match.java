@@ -19,6 +19,9 @@ import java.util.Set;
 @AllArgsConstructor
 public abstract class Match<T extends IScore, R extends IResult> implements IMatch<T, R> {
     private static final MatchState DEFAULT_STATE = MatchState.SCHEDULED;
+    @Setter
+    @EqualsAndHashCode.Exclude
+    private Set<T> scores = new HashSet<>();
     private Collection<IMatchParticipant> matchParticipants = new HashSet<>();
     @Setter
     @EqualsAndHashCode.Exclude
@@ -33,9 +36,6 @@ public abstract class Match<T extends IScore, R extends IResult> implements IMat
     private R result;
     @NonNull
     private MatchState state;
-    @Setter
-    @EqualsAndHashCode.Exclude
-    private Set<T> scores = new HashSet<>();
 
     public Match(@NonNull IVenue venue, @NonNull ITournament tournament) {
         this(venue, null, tournament, null);
