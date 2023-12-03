@@ -5,25 +5,28 @@ import es.playNcompete.backend.lib.matches.IMatch;
 import es.playNcompete.backend.lib.participants.IParticipant;
 import es.playNcompete.backend.lib.results.IResult;
 import es.playNcompete.backend.lib.scores.IScore;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 
 @Getter
-@AllArgsConstructor
 public class MatchParticipant implements IMatchParticipant {
     @EqualsAndHashCode.Exclude
-    @NonNull
     private IMatch<?, ?> match;
     @EqualsAndHashCode.Exclude
-    @NonNull
     private IParticipant participant;
+
+    public MatchParticipant(@NonNull IMatch<?, ?> match, @NonNull IParticipant participant) {
+        setParticipant(participant);
+        setMatch(match);
+    }
 
     @Override
     public <T extends IScore, R extends IResult> void setMatch(@NonNull IMatch<T, R> match) {
         if (this.match != match) {
-            this.match.removeMatchParticipant(this);
+            if (this.match != null) {
+                this.match.removeMatchParticipant(this);
+            }
             this.match = match;
             match.addMatchParticipant(this);
         }
@@ -37,7 +40,9 @@ public class MatchParticipant implements IMatchParticipant {
     @Override
     public void setParticipant(@NonNull IParticipant participant) {
         if (this.participant != participant) {
-            this.participant.removeMatchParticipant(this);
+            if (this.participant != null) {
+                this.participant.removeMatchParticipant(this);
+            }
             this.participant = participant;
             this.participant.addMatchParticipant(this);
         }

@@ -23,7 +23,7 @@ public class NewsArticle implements INewsArticle {
     @Setter
     private Set<IFile> images = new HashSet<>();
     @Setter
-    private Set<ISport> sports;
+    private Set<ISport> sports = new HashSet<>();
 
     @Override
     public void addImage(@NonNull IFile image) {

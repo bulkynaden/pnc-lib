@@ -35,6 +35,11 @@ public interface IMatch<T extends IScore, R extends IResult> extends IMatchParti
 
     void setResult(@NonNull R result);
 
+    /**
+     * Obtains the scoring strategy for this match.
+     *
+     * @return the scoring strategy for this match.
+     */
     IScoringStrategy<T, R> getScoringStrategy();
 
     MatchState getState();
