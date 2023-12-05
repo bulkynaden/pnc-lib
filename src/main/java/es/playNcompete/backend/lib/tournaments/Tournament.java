@@ -4,10 +4,7 @@ import es.playNcompete.backend.lib.exceptions.ObjectCantBeRemovedException;
 import es.playNcompete.backend.lib.matches.IMatch;
 import es.playNcompete.backend.lib.sports.ISport;
 import es.playNcompete.backend.lib.tournament_participants.ITournamentParticipant;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,6 +19,8 @@ public class Tournament implements ITournament {
     @EqualsAndHashCode.Exclude
     @NonNull
     private ISport sport;
+    @Setter
+    private String name;
 
     @Override
     public void addTournamentParticipant(@NonNull ITournamentParticipant tournamentParticipant) {
