@@ -21,6 +21,10 @@ public abstract class Sport implements ISport {
     @Setter
     private Set<INewsArticle> newsArticles = new HashSet<>();
 
+    public Sport(String name) {
+        setName(name);
+    }
+
     public void addTournament(@NonNull ITournament tournament) {
         this.tournaments.add(tournament);
         tournament.setSport(this);
