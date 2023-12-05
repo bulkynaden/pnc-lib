@@ -4,6 +4,6 @@ import es.playNcompete.backend.lib.tournaments.Tournament;
 
 public class TournamentFactory {
     public static Tournament createKartTournament() {
-        return new Tournament(SportFactory.createKartRacing());
+        return new Tournament(SportFactory.createKartRacing(), "Kart Tournament");
     }
 }
