@@ -1,6 +1,7 @@
 package es.playNcompete.backend.lib.sports;
 
 import es.playNcompete.backend.lib.IVenue;
+import es.playNcompete.backend.lib.exceptions.ParameterCantBeBlank;
 import es.playNcompete.backend.lib.news_article.INewsArticle;
 import es.playNcompete.backend.lib.tournaments.ITournament;
 import lombok.Getter;
@@ -10,34 +11,48 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The Sport class represents a sport with properties such as tournaments, venues, and news articles.
+ * It implements the ISport interface.
+ */
 @Getter
 public abstract class Sport implements ISport {
-    @Setter
-    private Set<ITournament> tournaments = new HashSet<>();
-    @Setter
-    private Set<IVenue> venues = new HashSet<>();
+    private final Set<INewsArticle> newsArticles = new HashSet<>();
+    private final Set<IVenue> venues = new HashSet<>();
+    private final Set<ITournament> tournaments = new HashSet<>();
     @Setter
     private String name;
-    @Setter
-    private Set<INewsArticle> newsArticles = new HashSet<>();
 
-    public Sport(String name) {
+    /**
+     * Initializes a new instance of the Sport class.
+     *
+     * @param name The name of the sport.
+     * @throws ParameterCantBeBlank if the name is blank.
+     */
+    public Sport(@NonNull String name) throws ParameterCantBeBlank {
+        if (name.isBlank()) {
+            throw new ParameterCantBeBlank("name");
+        }
         setName(name);
     }
 
+    @Override
     public void addTournament(@NonNull ITournament tournament) {
         this.tournaments.add(tournament);
         tournament.setSport(this);
     }
 
+    @Override
     public void removeTournament(@NonNull ITournament tournament) {
         this.tournaments.remove(tournament);
     }
 
+    @Override
     public void addVenue(IVenue venue) {
         this.venues.add(venue);
     }
 
+    @Override
     public void removeVenue(IVenue venue) {
         this.venues.remove(venue);
     }

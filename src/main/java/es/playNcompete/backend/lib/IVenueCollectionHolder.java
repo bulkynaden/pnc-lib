@@ -4,6 +4,10 @@ import lombok.NonNull;
 
 import java.util.Collection;
 
+/**
+ * The IVenueCollectionHolder interface represents a collection holder for venues.
+ * It provides methods to get venues, set venues, add a venue, and remove a venue.
+ */
 public interface IVenueCollectionHolder {
 
     /**

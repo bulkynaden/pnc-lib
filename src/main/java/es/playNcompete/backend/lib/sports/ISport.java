@@ -1,26 +1,14 @@
 package es.playNcompete.backend.lib.sports;
 
 import es.bulkynaden.common.helpers.name.IName;
-import es.playNcompete.backend.lib.IVenue;
-import es.playNcompete.backend.lib.news_article.INewsArticle;
+import es.playNcompete.backend.lib.IVenueCollectionHolder;
+import es.playNcompete.backend.lib.news_article.INewsArticleCollectionHolder;
 import es.playNcompete.backend.lib.tournaments.ITournamentCollectionHolder;
 
-import java.util.Set;
-
-public interface ISport extends IName, ITournamentCollectionHolder {
-    Set<IVenue> getVenues();
-
-    void setVenues(Set<IVenue> venues);
-
-    void addVenue(IVenue venue);
-
-    void removeVenue(IVenue venue);
-
-    Set<INewsArticle> getNewsArticles();
-
-    void setNewsArticles(Set<INewsArticle> newsArticles);
-
-    void addNewsArticle(INewsArticle newsArticle);
-
-    void removeNewsArticle(INewsArticle newsArticle);
+/**
+ * The ISport interface represents a sport with properties such as tournaments, venues, and news articles.
+ * It extends the IName, ITournamentCollectionHolder,
+ * INewsArticleCollectionHolder, and IVenueCollectionHolder interfaces.
+ */
+public interface ISport extends IName, ITournamentCollectionHolder, INewsArticleCollectionHolder, IVenueCollectionHolder {
 }
