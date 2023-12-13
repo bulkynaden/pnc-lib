@@ -32,15 +32,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout dev branch
+      - name: Checkout main branch
         uses: actions/checkout@v2
         with:
-          ref: dev
+          ref: main
 
       - name: Merge dev into main
         run: |
           git config --global user.name 'GitHub Action'
-          git fetch origin main
-          git checkout main
-          git merge --no-ff dev
+          git merge --no-ff origin/dev
           git push origin main
