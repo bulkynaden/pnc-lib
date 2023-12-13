@@ -85,7 +85,7 @@ public class NewsArticleTest {
         assertTrue(newsArticle.getSports().contains(sport1));
 
         newsArticle.addSport(sport2);
-        assertEquals(1, newsArticle.getSports().size());
+        assertEquals(2, newsArticle.getSports().size());
         assertTrue(newsArticle.getSports().contains(sport1));
     }
 
