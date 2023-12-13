@@ -42,5 +42,4 @@ jobs:
         with:
           type: now
           target_branch: main
-          message: Merge dev into main
           github_token: ${{ secrets.GITHUB_TOKEN }}
