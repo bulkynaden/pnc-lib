@@ -20,7 +20,6 @@ public class Tournament implements ITournament {
     @EqualsAndHashCode.Exclude
     private final Collection<IMatch<?, ?>> matches = new HashSet<>();
     @EqualsAndHashCode.Exclude
-    @NonNull
     private ISport sport;
     @Setter
     private String name;
@@ -29,8 +28,8 @@ public class Tournament implements ITournament {
         if (name.isBlank()) {
             throw new ParameterCantBeBlankException("name");
         }
-        this.sport = sport;
-        this.name = name;
+        setSport(sport);
+        setName(name);
     }
 
     @Override
@@ -65,7 +64,9 @@ public class Tournament implements ITournament {
     @Override
     public void setSport(@NonNull ISport sport) {
         if (this.sport != sport) {
-            this.sport.removeTournament(this);
+            if (this.sport != null) {
+                this.sport.removeTournament(this);
+            }
             this.sport = sport;
             this.sport.addTournament(this);
         }
