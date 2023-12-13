@@ -64,7 +64,9 @@ public class Tournament implements ITournament {
     @Override
     public void setSport(@NonNull ISport sport) {
         if (this.sport != sport) {
-            this.sport.removeTournament(this);
+            if (this.sport != null) {
+                this.sport.removeTournament(this);
+            }
             this.sport = sport;
             this.sport.addTournament(this);
         }
