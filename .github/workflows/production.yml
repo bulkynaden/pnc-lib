@@ -32,13 +32,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v2
-        with:
-          ref: main
+      - uses: actions/checkout@master
 
-      - name: Merge dev into main
-        run: |
-          git config --global user.name 'GitHub Action'
-          git merge --no-ff origin/dev
-          git push origin main
+      - name: Merge staging -> uat
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: main
+          message: Merge dev into main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
