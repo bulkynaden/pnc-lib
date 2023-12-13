@@ -1,16 +1,19 @@
 package es.playNcompete.backend.lib.tournaments;
 
 import es.playNcompete.backend.lib.exceptions.ObjectCantBeRemovedException;
+import es.playNcompete.backend.lib.exceptions.ParameterCantBeBlankException;
 import es.playNcompete.backend.lib.matches.IMatch;
 import es.playNcompete.backend.lib.sports.ISport;
 import es.playNcompete.backend.lib.tournament_participants.ITournamentParticipant;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 import java.util.Collection;
 import java.util.HashSet;
 
 @Getter
-@AllArgsConstructor
 public class Tournament implements ITournament {
     @EqualsAndHashCode.Exclude
     private final Collection<ITournamentParticipant> tournamentParticipants = new HashSet<>();
@@ -21,6 +24,14 @@ public class Tournament implements ITournament {
     private ISport sport;
     @Setter
     private String name;
+
+    public Tournament(@NonNull ISport sport, @NonNull String name) {
+        if (name.isBlank()) {
+            throw new ParameterCantBeBlankException("name");
+        }
+        this.sport = sport;
+        this.name = name;
+    }
 
     @Override
     public void addTournamentParticipant(@NonNull ITournamentParticipant tournamentParticipant) {
