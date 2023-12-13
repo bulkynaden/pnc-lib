@@ -1,7 +1,7 @@
 package es.playNcompete.backend.lib.sports;
 
 import es.playNcompete.backend.lib.IVenue;
-import es.playNcompete.backend.lib.exceptions.ParameterCantBeBlank;
+import es.playNcompete.backend.lib.exceptions.ParameterCantBeBlankException;
 import es.playNcompete.backend.lib.news_article.INewsArticle;
 import es.playNcompete.backend.lib.tournaments.ITournament;
 import lombok.Getter;
@@ -27,11 +27,11 @@ public abstract class Sport implements ISport {
      * Initializes a new instance of the Sport class.
      *
      * @param name The name of the sport.
-     * @throws ParameterCantBeBlank if the name is blank.
+     * @throws ParameterCantBeBlankException if the name is blank.
      */
-    public Sport(@NonNull String name) throws ParameterCantBeBlank {
+    public Sport(@NonNull String name) throws ParameterCantBeBlankException {
         if (name.isBlank()) {
-            throw new ParameterCantBeBlank("name");
+            throw new ParameterCantBeBlankException("name");
         }
         setName(name);
     }
